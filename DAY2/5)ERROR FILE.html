@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Message Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .error {
+            color: red;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Error Message Example</h1>
+    <button id="showErrorButton">Show Error</button>
+
+    <script>
+        document.getElementById('showErrorButton').addEventListener('click', function() {
+            const errorMessage = document.createElement('p');
+            errorMessage.textContent = 'Error! Filename not specified.';
+            errorMessage.classList.add('error');
+            document.body.appendChild(errorMessage);
+        });
+    </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Creation Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .error-message {
+            color: red;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dynamic Error Creation</h1>
+    <button id="createErrorButton">Create Error!</button>
+
+    <script>
+        document.getElementById('createErrorButton').addEventListener('click', function() {
+            const errorElement = document.createElement('p');
+            errorElement.textContent = 'Error! Filename not specified.';
+            errorElement.classList.add('error-message');
+            document.body.appendChild(errorElement);
+        });
+    </script>
+
+</body>
+</html>

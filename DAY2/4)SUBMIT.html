@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Paragraph Style</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        p {
+            font-size: 16px;
+            color: #333;
+        }
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>College Information</h1>
+
+    <form>
+        <button type="button" id="changeButton">Change</button>
+    </form>
+
+    <p id="collegeParagraph">
+        Welcome to <span class="bold">XYZ College</span>, where we provide excellent education in fields such as <span class="bold">Computer Science</span>, <span class="bold">Engineering</span>, and <span class="bold">Business Studies</span>. Our faculty members are highly experienced, and the campus is equipped with state-of-the-art facilities.
+    </p>
+
+    <script>
+        document.getElementById('changeButton').addEventListener('click', function() {
+            const paragraph = document.getElementById('collegeParagraph');
+            paragraph.style.fontFamily = 'Courier New';
+            paragraph.style.fontSize = '20px';
+            paragraph.style.color = '#4CAF50';
+        });
+
+        const boldWords = document.querySelectorAll('.bold');
+        boldWords.forEach(function(word) {
+            word.addEventListener('mouseover', function() {
+                word.style.backgroundColor = 'yellow';
+            });
+            word.addEventListener('mouseout', function() {
+                word.style.backgroundColor = '';
+            });
+        });
+    </script>
+
+</body>
+</html>

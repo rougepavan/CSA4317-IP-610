@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Case Converter</title>
+</head>
+<body>
+
+    <h1>String Case Converter</h1>
+    <button onclick="printStringInCase()">Enter String</button>
+
+    <script>
+        function printStringInCase() {
+            let inputString = prompt("Enter a string:");
+            let upperCaseString = inputString.toUpperCase();
+            let lowerCaseString = inputString.toLowerCase();
+
+            document.body.innerHTML += `
+                <h2>Original String: ${inputString}</h2>
+                <h3>Uppercase: ${upperCaseString}</h3>
+                <h3>Lowercase: ${lowerCaseString}</h3>
+            `;
+        }
+    </script>
+
+</body>
+</html>

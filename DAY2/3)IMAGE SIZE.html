@@ -1,0 +1,50 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Image Size</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input[type="file"] {
+            padding: 10px;
+            font-size: 16px;
+        }
+        p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Get Image Dimensions (Height & Width)</h1>
+
+    <input type="file" id="imageInput" accept="image/*">
+    <p id="dimensions"></p>
+
+    <script>
+        document.getElementById('imageInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            
+            if (file) {
+                const img = new Image();
+                const url = URL.createObjectURL(file);
+                img.src = url;
+                
+                img.onload = function() {
+                    const width = img.width;
+                    const height = img.height;
+                    document.getElementById('dimensions').innerHTML = `Width: ${width}px, Height: ${height}px`;
+                    URL.revokeObjectURL(url);
+                };
+            }
+        });
+    </script>
+
+</body>
+</html>
