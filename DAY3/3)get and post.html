@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET and POST Methods in a Single Page</title>
+</head>
+<body>
+    <h2>Form Submission with GET and POST Methods</h2>
+
+    <!-- Form using GET method -->
+    <h3>GET Method Form</h3>
+    <form action="processForm" method="GET">
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name" name="name" required /><br><br>
+
+        <label for="email">Enter your email:</label>
+        <input type="email" id="email" name="email" required /><br><br>
+
+        <input type="submit" value="Submit GET">
+    </form>
+
+    <hr>
+
+    <!-- Form using POST method -->
+    <h3>POST Method Form</h3>
+    <form action="processForm" method="POST">
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name" name="name" required /><br><br>
+
+        <label for="email">Enter your email:</label>
+        <input type="email" id="email" name="email" required /><br><br>
+
+        <input type="submit" value="Submit POST">
+    </form>
+
+</body>
+</html>
