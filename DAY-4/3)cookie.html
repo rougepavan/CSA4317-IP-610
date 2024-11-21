@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cookie Example</h1>
+    <p id="cookieStatus">Checking cookie...</p>
+    <button onclick="setCookie()">Set Cookie</button>
+    <button onclick="getCookie()">Get Cookie</button>
+
+    <script>
+        // Function to set a cookie
+        function setCookie() {
+            const cookieName = "user";
+            const cookieValue = "John";
+            const expirationDays = 30;
+
+            // Calculate the expiration date
+            const date = new Date();
+            date.setTime(date.getTime() + (expirationDays * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+
+            // Set the cookie
+            document.cookie = `${cookieName}=${cookieValue}; ${expires}; path=/`;
+
+            document.getElementById("cookieStatus").textContent = "Cookie has been set!";
+        }
+
+        // Function to get a cookie
+        function getCookie() {
+            const cookieName = "user=";
+            const decodedCookies = decodeURIComponent(document.cookie);
+            const cookiesArray = decodedCookies.split(";");
+
+            for (let i = 0; i < cookiesArray.length; i++) {
+                let cookie = cookiesArray[i].trim();
+                if (cookie.indexOf(cookieName) === 0) {
+                    const cookieValue = cookie.substring(cookieName.length);
+                    document.getElementById("cookieStatus").textContent = `Cookie Value: ${cookieValue}`;
+                    return;
+                }
+            }
+
+            document.getElementById("cookieStatus").textContent = "Cookie not found!";
+        }
+    </script>
+</body>
+</html>

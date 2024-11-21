@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Search Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h3 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>State Search Tool</h1>
+
+    <form id="stateForm">
+        <label for="states">Enter States (comma-separated):</label><br>
+        <input type="text" id="states" name="states" style="width: 100%;" placeholder="e.g., Mississippi, Alabama, Massachusetts, Kansas" required>
+        <br><br>
+        <button type="button" onclick="searchStates()">Search</button>
+    </form>
+
+    <div class="results" id="results"></div>
+
+    <script>
+        function searchStates() {
+            // Get the input value
+            const statesInput = document.getElementById('states').value.trim();
+
+            // Check if input is empty
+            if (!statesInput) {
+                document.getElementById('results').innerHTML = "<h3 style='color: red;'>Please enter a list of states!</h3>";
+                return;
+            }
+
+            // Split the input into an array
+            const statesArray = statesInput.split(',').map(state => state.trim());
+
+            // Initialize results
+            const results = {};
+
+            // (a) Find state ending in 'xas'
+            const endsWithXas = statesArray.find(state => state.endsWith('xas'));
+            if (endsWithXas) {
+                results['Ends with "xas"'] = endsWithXas;
+            }
+
+            // (b) Find state starting with 'M' and ending with 's'
+            const beginsWithMEndsWithS = statesArray.find(state => state.startsWith('M') && state.endsWith('s'));
+            if (beginsWithMEndsWithS) {
+                results['Begins with "M" and ends with "s"'] = beginsWithMEndsWithS;
+            }
+
+            // Display results
+            let output = "<h3>Original Array:</h3><pre>" + JSON.stringify(statesArray, null, 2) + "</pre>";
+
+            output += "<h3>Search Results:</h3>";
+            if (Object.keys(results).length > 0) {
+                output += "<pre>" + JSON.stringify(results, null, 2) + "</pre>";
+            } else {
+                output += "<p>No matches found for the specified patterns.</p>";
+            }
+
+            document.getElementById('results').innerHTML = output;
+        }
+    </script>
+</body>
+</html>

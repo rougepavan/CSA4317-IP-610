@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #5a5a5a;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #777;
+        }
+
+        .category {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .category h3 {
+            margin: 0;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .item {
+            margin: 10px 0;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item strong {
+            display: block;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .item:hover {
+            background-color: #f1f1f1;
+            transition: background-color 0.3s;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        @media (max-width: 600px) {
+            .category h3 {
+                font-size: 1.5em;
+            }
+
+            .item strong {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Restaurant Menu</h1>
+    
+    <script type="text/xml" id="menuData">
+        <restaurant>
+            <name>Gourmet Bistro</name>
+            <location>123 Flavor St, Food City</location>
+            <menu>
+                <category>
+                    <name>Appetizers</name>
+                    <item>
+                        <name>Bruschetta</name>
+                        <description>Grilled bread topped with tomatoes and basil.</description>
+                        <price>8.99</price>
+                    </item>
+                    <item>
+                        <name>Stuffed Mushrooms</name>
+                        <description>Mushrooms stuffed with cheese and herbs.</description>
+                        <price>9.99</price>
+                    </item>
+                </category>
+                <category>
+                    <name>Main Courses</name>
+                    <item>
+                        <name>Grilled Salmon</name>
+                        <description>Salmon fillet grilled to perfection.</description>
+                        <price>19.99</price>
+                    </item>
+                    <item>
+                        <name>Vegetable Stir Fry</name>
+                        <description>Mixed vegetables stir-fried in a savory sauce.</description>
+                        <price>14.99</price>
+                    </item>
+                </category>
+            </menu>
+        </restaurant>
+    </script>
+
+    <div id="menuDisplay"></div>
+
+    <script>
+        // Load the XML data
+        const xmlData = document.getElementById('menuData').textContent;
+
+        // Parse the XML data
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlData, "text/xml");
+
+        // Function to transform XML to HTML
+        function displayMenu(xml) {
+            const restaurantName = xml.getElementsByTagName("name")[0].textContent;
+            const restaurantLocation = xml.getElementsByTagName("location")[0].textContent;
+            let html = `<h1>${restaurantName}</h1><h2>Location: ${restaurantLocation}</h2>`;
+
+            const categories = xml.getElementsByTagName("category");
+            for (let i = 0; i < categories.length; i++) {
+                const categoryName = categories[i].getElementsByTagName("name")[0].textContent;
+                html += `<div class="category"><h3>${categoryName}</h3>`;
+                
+                const items = categories[i]. getElementsByTagName("item");
+                for (let j = 0; j < items.length; j++) {
+                    const itemName = items[j].getElementsByTagName("name")[0].textContent;
+                    const itemDescription = items[j].getElementsByTagName("description")[0].textContent;
+                    const itemPrice = items[j].getElementsByTagName("price")[0].textContent;
+
+                    html += `
+                        <div class="item">
+                            <strong>${itemName}</strong>
+                            ${itemDescription}<br/>
+                            <span class="price">Price: $${itemPrice}</span>
+                        </div>`;
+                }
+                html += `</div>`;
+            }
+
+            document.getElementById('menuDisplay').innerHTML = html;
+        }
+
+        // Display the menu
+        displayMenu(xmlDoc);
+    </script>
+</body>
+</html>
