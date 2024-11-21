@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bike Showroom</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    #topFrame {
+      background-color: lightblue;
+      text-align: center;
+      padding: 20px;
+      font-size: 24px;
+      height: 100px;
+    }
+    #bottomFrame {
+      display: flex;
+      height: calc(100vh - 100px);
+    }
+    #leftFrame {
+      width: 250px;
+      background-color: #f4f4f4;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    #leftFrame ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    #leftFrame li {
+      margin: 10px 0;
+    }
+    #leftFrame a {
+      text-decoration: none;
+      color: #007bff;
+      cursor: pointer;
+    }
+    #leftFrame a:hover {
+      text-decoration: underline;
+    }
+    #rightFrame {
+      flex-grow: 1;
+      padding: 20px;
+      background-color: #fff;
+    }
+    .model {
+      margin-bottom: 20px;
+    }
+    .model h3 {
+      margin: 0;
+      color: #007bff;
+    }
+    .model p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="topFrame">
+    <h1>Bike Showroom</h1>
+  </div>
+  <div id="bottomFrame">
+    <div id="leftFrame">
+      <h2>Select Bike Brand</h2>
+      <ul>
+        <li><a href="javascript:void(0);" onclick="showModel('Honda')">Honda</a></li>
+        <li><a href="javascript:void(0);" onclick="showModel('Yamaha')">Yamaha</a></li>
+        <li><a href="javascript:void(0);" onclick="showModel('BMW')">BMW</a></li>
+        <li><a href="javascript:void(0);" onclick="showModel('Kawasaki')">Kawasaki</a></li>
+      </ul>
+    </div>
+    <div id="rightFrame">
+      <h2>Bike Models</h2>
+      <div id="model-info">
+        <p>Select a brand to view models and specifications.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    function showModel(brand) {
+      var modelInfo = document.getElementById('model-info');
+      if (brand === 'Honda') {
+        modelInfo.innerHTML = `
+          <div class="model">
+            <h3>Honda CB500F</h3>
+            <p>Engine: 471cc, 6-speed, 47 hp</p>
+            <p>Price: $6,000</p>
+          </div>
+          <div class="model">
+            <h3>Honda CRF450R</h3>
+            <p>Engine: 449cc, 5-speed, 53 hp</p>
+            <p>Price: $8,000</p>
+          </div>
+        `;
+      } else if (brand === 'Yamaha') {
+        modelInfo.innerHTML = `
+          <div class="model">
+            <h3>Yamaha R1</h3>
+            <p>Engine: 998cc, 6-speed, 200 hp</p>
+            <p>Price: $17,000</p>
+          </div>
+          <div class="model">
+            <h3>Yamaha FZ-07</h3>
+            <p>Engine: 689cc, 6-speed, 74 hp</p>
+            <p>Price: $7,500</p>
+          </div>
+        `;
+      } else if (brand === 'BMW') {
+        modelInfo.innerHTML = `
+          <div class="model">
+            <h3>BMW S1000RR</h3>
+            <p>Engine: 999cc, 6-speed, 205 hp</p>
+            <p>Price: $20,000</p>
+          </div>
+        `;
+      } else if (brand === 'Kawasaki') {
+        modelInfo.innerHTML = `
+          <div class="model">
+            <h3>Kawasaki Ninja ZX-10R</h3>
+            <p>Engine: 998cc, 6-speed, 203 hp</p>
+            <p>Price: $16,000</p>
+          </div>
+        `;
+      } else {
+        modelInfo.innerHTML = '<p>No models available for this brand.</p>';
+      }
+    }
+  </script>
+</body>
+</html>

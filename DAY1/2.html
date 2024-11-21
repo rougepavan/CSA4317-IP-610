@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Grid Area</title>
+  <style>
+    .container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 100px);
+      gap: 10px;
+      grid-template-areas: 
+        "header header header"
+        "content highlighted content"
+        "footer footer footer";
+    }
+
+    .header {
+      background-color: lightblue;
+      grid-area: header;
+    }
+
+    .content {
+      background-color: lightgreen;
+      grid-area: content;
+    }
+
+    .highlighted {
+      background-color: yellow;
+      grid-area: highlighted;
+      grid-row: span 2;
+      grid-column: span 2;
+    }
+
+    .footer {
+      background-color: lightcoral;
+      grid-area: footer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">Header</div>
+    <div class="content">Content</div>
+    <div class="highlighted">Highlighted Area</div>
+    <div class="footer">Footer</div>
+  </div>
+</body>
+</html>
